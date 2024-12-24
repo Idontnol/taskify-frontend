@@ -1,31 +1,20 @@
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { BrowserRouter, } from 'react-router-dom';
 import { useState } from 'react';
 import { taskContext } from './context/taskContext';
-import SignUpLoginModal from './components/Authenticate';
-import AllTasks from './components/AllTasks';
-import CompletedTasks from './components/CompletedTasks';
-import PendingTasks from './components/PendingTasks';
-import { tasks } from './utils/data';
+// import { projects } from './utils/data';
+import TaskBoard from './components2/TaskBoard';
 
 function App() {
-  const [showSignUpModal,setShowSignUpModal]=useState(false);
-  const [currentTasks,setCurrentTasks]=useState(tasks);
+
+  const [activeProject,setActiveProject]=useState(null);
+  // const [allProjects,setAllProjects]=useState(projects);
 
   return (
     <div className="App">
         <BrowserRouter>
-          <taskContext.Provider value={{currentTasks,setCurrentTasks}}>
-            <Navbar setShowSignUpModal={setShowSignUpModal}  />
-            {showSignUpModal && <SignUpLoginModal setShowSignUpModal={setShowSignUpModal} />}
-            <Routes>
-              <Route exact path="/" element={  <AllTasks/>} />
-              <Route exact path="/all-tasks" element={<AllTasks/>} />
-              <Route exact path="/completed-tasks" element={<CompletedTasks/>} />
-              <Route exact path="pending-tasks" element={<PendingTasks/>} />
-
-          </Routes>
+          <taskContext.Provider value={{activeProject,setActiveProject}}>
+            <TaskBoard/>
           </taskContext.Provider >
         </BrowserRouter >
     </div>
