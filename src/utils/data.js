@@ -67,4 +67,4 @@
   //     }
   //   }
   // ];
-export const url="https://taskify-backend-xi.vercel.app/";
+export const url="https://taskify-backend-xi.vercel.app";
